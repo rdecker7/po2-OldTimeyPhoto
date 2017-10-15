@@ -6,17 +6,20 @@
 #include<vector>
 
 using namespace std; 
+
+int main()
 {
  //Create Bitmap
  Bitmap image;
+ Pixel rgb;
  //Create vector of vector of Pixels
  vector< vector<Pixel> > bmp;
  //Collect user input for file name and store
- string fname;
+ string fileName;
  cout<<"Please input bmp file as 'fileName.bmp'"<<endl;
- cin>>fname;
+ cin>>fileName;
  //Open bmp file as Bitmap image
- image.open("fname")
+ image.open(fileName);
  //Check if image is valid
  bool validBmp=image.isImage();
  //Loop if image was valid
@@ -28,19 +31,19 @@ using namespace std;
    {
      for(int c=0;c<bmp[r].size();c++)
      {
+       //Modifying pixels based on rgb values
        bmp[r][c]=rgb;
-       //Loop to modify pixels depending on their color
-       if(rgb.red>120 && rgb.green>75 && rgb.blue>10)
-       {
-         rgb.red=120;
-         rgb.green=105;
-         rgb.blue=80
-       }
-       
+       int avg=(rgb.red+rgb.green+rgb.blue)/3;
+       rgb.red=avg;
+       rgb.green=avg;
+       rgb.blue=avg;
+       rgb=bmp[r][c];
      }
    }
  }
-//Save the modified image as bmp file
-
+ //Save the modified image as bmp file
+ image.fromPixelMatrix(bmp);
+ image.save("fname.bmp");
+ 
  return 0;
 }
