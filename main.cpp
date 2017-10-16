@@ -40,10 +40,14 @@ int main()
        rgb=bmp[r][c];
      }
    }
- }
  //Save the modified image as bmp file
  image.fromPixelMatrix(bmp);
- image.save("fname.bmp");
- 
+ image.save(fileName);
+ }
+ else
+ {
+ cout<<"Invalid file name, please try again."<<endl;
+ return 20;
+ }
  return 0;
 }
