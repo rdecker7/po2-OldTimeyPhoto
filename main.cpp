@@ -32,17 +32,17 @@ using namespace std;
         for(int c=0;c<bmp[r].size();c++)
         {
           //Modifying pixels based on rgb values
-          bmp[r][c]=rgb;
-          int avg=(rgb.red+rgb.green+rgb.blue)/3;
+          rgb=bmp[r][c];
+          int avg= 255; //(rgb.red+rgb.green+rgb.blue)/3;
           rgb.red=avg;
           rgb.green=avg;
           rgb.blue=avg;
-          rgb=bmp[r][c];
+          bmp[r][c]=rgb;
         }
       }
     //Save the modified image as bmp file
     image.fromPixelMatrix(bmp);
-    image.save(fileName);
+    image.save("oldtimey.bmp");
   }
   else
   {
