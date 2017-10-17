@@ -34,7 +34,7 @@ int main()
                         {
                                 //Modifying pixels based on rgb values
                                 rgb=bmp[r][c];
-                                int avg= 255; //(rgb.red+rgb.green+rgb.blue)/3;
+                                int avg= (rgb.red+rgb.green+rgb.blue)/3;
                                 rgb.red=avg;
                                 rgb.green=avg;
                                 rgb.blue=avg;
