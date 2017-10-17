@@ -26,7 +26,6 @@ int main()
         if (validBmp==1)
         {
                 bmp=image.toPixelMatrix();
-                cout<<"Rows: "<<bmp.size()<<endl;
                 //Create loop to go through each row of pixels and modify them
                 for(int r=0;r<bmp.size();r++)
                 {
@@ -43,7 +42,7 @@ int main()
                 }
                 //Save the modified image as bmp file
                 image.fromPixelMatrix(bmp);
-                image.save("oldtimey.bmp");
+                image.save("OldTimey.bmp");
         }
         else
         {
