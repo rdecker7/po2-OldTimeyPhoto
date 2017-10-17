@@ -7,46 +7,47 @@
 
 using namespace std; 
 
-  int main()
-  {
-    //Create Bitmap
-    Bitmap image;
-    Pixel rgb;
-    //Create vector of vector of Pixels
-    vector< vector<Pixel> > bmp;
-    //Collect user input for file name and store
-    string fileName;
-    cout<<"Please input bmp file as 'fileName.bmp'"<<endl;
-    cin>>fileName;
-    //Open bmp file as Bitmap image
-    image.open(fileName);
-    //Check if image is valid
-    bool validBmp=image.isImage();
-    //Loop if image was valid
-    if (validBmp==1)
-    {
-      bmp=image.toPixelMatrix();
-      //Create loop to go through each row of pixels and modify them
-      for(int r=0;r<bmp.size();r++)
-      {
-        for(int c=0;c<bmp[r].size();c++)
+int main()
+{
+        //Create Bitmap
+        Bitmap image;
+        Pixel rgb;
+        //Create vector of vector of Pixels
+        vector< vector<Pixel> > bmp;
+        //Collect user input for file name and store
+        string fileName;
+        cout<<"Please input bmp file as 'fileName.bmp'"<<endl;
+        cin>>fileName;
+        //Open bmp file as Bitmap image
+        image.open(fileName);
+        //Check if image is valid
+        bool validBmp=image.isImage();
+        //Loop if image was valid
+        if (validBmp==1)
         {
-          //Modifying pixels based on rgb values
-          rgb=bmp[r][c];
-          int avg= 255; //(rgb.red+rgb.green+rgb.blue)/3;
-          rgb.red=avg;
-          rgb.green=avg;
-          rgb.blue=avg;
-          bmp[r][c]=rgb;
+                bmp=image.toPixelMatrix();
+                cout<<"Rows: "<<bmp.size()<<endl;
+                //Create loop to go through each row of pixels and modify them
+                for(int r=0;r<bmp.size();r++)
+                {
+                        for(int c=0;c<bmp[r].size();c++)
+                        {
+                                //Modifying pixels based on rgb values
+                                rgb=bmp[r][c];
+                                int avg= 255; //(rgb.red+rgb.green+rgb.blue)/3;
+                                rgb.red=avg;
+                                rgb.green=avg;
+                                rgb.blue=avg;
+                                bmp[r][c]=rgb;
+                        }
+                }
+                //Save the modified image as bmp file
+                image.fromPixelMatrix(bmp);
+                image.save("oldtimey.bmp");
         }
-      }
-    //Save the modified image as bmp file
-    image.fromPixelMatrix(bmp);
-    image.save("oldtimey.bmp");
-  }
-  else
-  {
-    cout<<"Invalid file name, please try again."<<endl;
-  }
-  return 0;
+        else
+        {
+                cout<<"Invalid file name, please try again."<<endl;
+        }
+        return 0;
 }
